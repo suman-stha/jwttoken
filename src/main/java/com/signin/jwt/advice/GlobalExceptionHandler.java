@@ -2,7 +2,7 @@ package com.signin.jwt.advice;
 
 
 
-import com.signin.jwt.SignUpException;
+import com.signin.jwt.exception.SignUpException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.signin.jwt.response.ErrorResponse;
@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
