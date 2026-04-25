@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     // No additional methods needed; just inherit from UserDetailsService
@@ -13,4 +14,6 @@ public interface UserService extends UserDetailsService {
     void deleteUser(Integer id);
 
    List<User>  getAllUser();
+
+   Optional<User> getUserById(Integer id);
 }
