@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -64,4 +65,8 @@ public class UserServiceImpl implements UserService {
         return allUser;
     }
 
+    public Optional<User> getUserById(Integer id){
+        return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!")));
+
+    }
 }
