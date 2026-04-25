@@ -7,10 +7,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -27,5 +29,12 @@ public class UserController {
         log.info("Request reached ...!");
         List<User> allUser = userService.getAllUser();
         return ResponseEntity.ok(allUser);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Integer id   ){
+        Optional<User> userById = userService.getUserById(id);
+        return ResponseEntity.ok(userById);
+
     }
 }
