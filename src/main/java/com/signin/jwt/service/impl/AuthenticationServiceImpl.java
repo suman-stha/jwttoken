@@ -1,7 +1,7 @@
 package com.signin.jwt.service.impl;
 
 
-import com.signin.jwt.SignUpException;
+import com.signin.jwt.exception.SignUpException;
 import com.signin.jwt.dto.JwtAuthenticationResponse;
 import com.signin.jwt.dto.SignInRequest;
 import com.signin.jwt.dto.SignUpRequest;
