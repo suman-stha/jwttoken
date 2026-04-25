@@ -24,6 +24,7 @@ private UserRepository userRepository;
 		System.out.println(base64Key);
 
 		System.out.println("Hello from develop branch..");
+		System.out.println("Hello comrades..");
 	}
 
 	@Override
