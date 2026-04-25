@@ -22,6 +22,12 @@ private UserRepository userRepository;
 		SecretKey key = Jwts.SIG.HS256.key().build();
 		String base64Key = Encoders.BASE64.encode(key.getEncoded());
 		System.out.println(base64Key);
+
+		System.out.println("Hello from develop branch..");
+		System.out.println("Hello comrades..");
+		System.out.println("Try again..");
+		System.out.println("Success!");
+		System.out.println("Finally!");
 	}
 
 	@Override
