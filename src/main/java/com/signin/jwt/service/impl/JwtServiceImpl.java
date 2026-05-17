@@ -15,6 +15,7 @@ import io.jsonwebtoken.Jwts;
 import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -22,7 +23,17 @@ import java.util.function.Function;
 public class JwtServiceImpl implements JwtService {
 
     public String generateToken(UserDetails userDetails) {
-        return Jwts.builder().setSubject(userDetails.getUsername()).
+        Map<String, Object> claims = new HashMap<>();
+
+        String role = userDetails.getAuthorities()
+                .stream()
+                .findFirst()
+                .map(authority -> authority.getAuthority())
+                .orElse("USER");
+
+        claims.put("role", role);
+        System.out.println("JWT claims: " + claims);
+        return Jwts.builder().setClaims(claims).setSubject(userDetails.getUsername()).
                 setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)).
                 signWith(getSignInKey(), SignatureAlgorithm.HS256).compact();

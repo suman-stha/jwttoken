@@ -9,11 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.crypto.SecretKey;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @SpringBootApplication
+@EnableCaching
 public class JwtApplication  implements CommandLineRunner {
 	@Autowired
 private UserRepository userRepository;
@@ -28,6 +33,8 @@ private UserRepository userRepository;
 		System.out.println("Try again..");
 		System.out.println("Success!");
 		System.out.println("Finally!");
+		System.out.println(LocalDate.now());
+		System.out.println(LocalDate.of(2026,04,29));
 	}
 
 	@Override

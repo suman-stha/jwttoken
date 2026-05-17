@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -42,4 +43,5 @@ public class AuthenticationController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully");
     }
+
 }

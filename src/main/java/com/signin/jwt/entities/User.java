@@ -3,6 +3,7 @@ package com.signin.jwt.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,6 +32,7 @@ public class User implements UserDetails {
     private String lastName;
 
     @Column(name = "email", unique = true,  nullable = false)
+    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Invalid email")
     private String email;
 
     @Transient
