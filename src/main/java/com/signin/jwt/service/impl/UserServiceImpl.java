@@ -8,6 +8,8 @@ import com.signin.jwt.repository.UserRepository;
 import com.signin.jwt.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @EnableMethodSecurity
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -58,6 +61,7 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser() {
         List<User> allUser = null;
         try {
+            log.info("✅ fetching from db");
             allUser = userRepository.findAll();
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,5 +72,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getUserById(Integer id){
         return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found!")));
 
+    }
+
+    @Cacheable
+    public List<User> getAllUsers(){
+        log.info("✅Fetching users from db: ");
+        return userRepository.findAll();
     }
 }
